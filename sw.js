@@ -2,7 +2,7 @@
 // يحفظ البرنامج فيفتح بلا إنترنت، ويجلب النسخة الجديدة في الخلفية. البصمة تتغير مع كل نشر فيتبدّل العامل.
 'use strict';
 
-const BUILD = '2026-10-16T12:15:02.441Z';
+const BUILD = '2026-10-16T12:17:34.732Z';
 // المخازن مشتركة بين كل تطبيقات usama-kh75.github.io: بادئة خاصة بهذا البرنامج، فلا يمس هياكل غيره
 const APP = 'boc-monthly-report';
 const SHELL = APP + '-shell-' + BUILD;
@@ -52,7 +52,10 @@ self.addEventListener('fetch', (e) => {
     const cached = await caches.match(req, { ignoreSearch: req.mode === 'navigate' }) ||
       (req.mode === 'navigate' ? await caches.match('./index.html') : undefined);
     const fresh = fetch(req).then(async (res) => {
-      if (res.ok && !(req.mode === 'navigate' && url.search)) await (await caches.open(SHELL)).put(req, res.clone());
+      // الصفحة لا تُحفظ هنا: تُحفظ عند التثبيت فقط بعد التحقق من بصمتها، وإلا حلّت محلها صفحة من بناء آخر
+      // يقدّمها GitHub أثناء النشر فتُفتح بعدها حتى بلا إنترنت (مراجعة Codex)
+      const page = req.mode === 'navigate' || /\/(index\.html)?$/.test(url.pathname);
+      if (res.ok && !page) await (await caches.open(SHELL)).put(req, res.clone());
       return res;
     });
     if (cached) {
