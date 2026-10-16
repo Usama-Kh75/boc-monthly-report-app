@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "التقرير الشهري الموحد — شعبة تبريد المركز",
+  "short_name": "التقرير الشهري",
+  "description": "تحويل تقارير الوحدات الشهرية إلى تقرير الشعبة الموحد. إعداد المهندس أسامة خليل هاشم",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "lang": "ar",
+  "dir": "rtl",
+  "background_color": "#f3f5f8",
+  "theme_color": "#0e2f4d",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
